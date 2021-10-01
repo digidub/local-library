@@ -2,7 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 
 var mongoose = require('mongoose');
-var mongoDB = 'srv://sandbox.qlukn.mongodb.net/myFirstDatabase';
+var mongoDB = 'mongodb+srv://sandbox.qlukn.mongodb.net/myFirstDatabase';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
