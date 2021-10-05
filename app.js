@@ -1,8 +1,10 @@
+var dotenv = require('dotenv');
+dotenv.config();
 var createError = require('http-errors');
 var express = require('express');
 
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://m001-student:m001-mongodb-basics@sandbox.qlukn.mongodb.net/myFirstDatabase';
+var mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -30,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
